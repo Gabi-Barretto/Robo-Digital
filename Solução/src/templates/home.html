@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robô Digital</title>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>Digite as posições do robô:</h1>
+    <form action="criar" method="post">
+      <label for="x">X:</label>
+      <input type="text" id="x" name="x"><br><br>
+      <label for="y">Y:</label>
+      <input type="text" id="y" name="y"><br><br>
+      <label for="z">Z:</label>
+      <input type="text" id="z" name="z"><br><br>
+      <input type="submit" value="Adicionar">
+    </form>
+    <br>
+    <table>
+      <tr>
+        <td>X</td>
+        <td>Y</td>
+        <td>Z</td>
+      </tr>
+
+    {% for posicao in posicoes%}
+      <tr>
+        <td>{{posicao.x}}</td>
+        <td>{{posicao.y}}</td>
+        <td>{{posicao.z}}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+      
+</body>
+</html>
