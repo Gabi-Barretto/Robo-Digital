@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from data.posicoes import Posicao
-from joystick import coordenadas, move
+
+global posicoes
 
 posicoes =[
     Posicao(x="0", y="0", z="0")
@@ -12,30 +13,20 @@ app = Flask(__name__)
 def index():
     return render_template("home.html", posicoes=posicoes)
 
-@app.route("/mover", methods=["POST"])
+@app.route("/mover", methods=["GET","POST"])
 def criar_evento():
-    posicao = Posicao(
-        x=request.form["x"],
-        y=request.form["y"],
-        z=request.form["z"]
-    )
-    #global posicoes
-   # posicoes.append(posicao)
-    move(posicao.x, posicao.y, posicao.z)
-    return redirect("/")
-
-@app.route("/pegar_coordenadas", methods=["POST"])
-
-def gerar_coordenada():
-    x, y, z = coordenadas()
-    posicao = Posicao(
-        x=x,                
-        y=y,
-        z=z
-    )
-    global posicoes
-    posicoes.append(posicao)
-    return redirect("/")
+    if request.method == "POST": 
+        posicao = Posicao(
+            x=request.form["x"],                
+            y=request.form["y"],
+            z=request.form["z"]
+        )
+        global posicoes
+        posicoes.append(posicao)
+        return redirect("/")
+    
+    return {"x": posicoes[-1].x, "y": posicoes[-1].y, "z": posicoes[-1].z}
 
 
-app.run(host='0.0.0.0', port= 3000, debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port= 3000, debug=True)
