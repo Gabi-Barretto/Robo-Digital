@@ -1,8 +1,11 @@
-from sqlalchemy.ext.declarative import declarative_base
-
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String, Boolean
 
-Base = declarative_base()
+#from sqlalchemy.ext.declarative import declarative_base
+#Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 class Coordenada(Base):
     __tablename__ = 'posicoes'
