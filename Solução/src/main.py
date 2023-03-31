@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, jsonify
+from data.database import iniciar_banco_de_dados
 from data.posicoes import Posicao
+from data.coordenadas import Coordenada
 
 global posicoes
 
@@ -8,6 +10,9 @@ posicoes =[
 ]
 
 app = Flask(__name__)
+
+Session = iniciar_banco_de_dados()
+session = Session()
 
 @app.route("/")
 def index():
@@ -21,6 +26,13 @@ def criar_evento():
             y=request.form["y"],
             z=request.form["z"]
         )
+        coordenada = Coordenada(
+            x=request.form["x"],
+            y=request.form["y"],
+            z=request.form["z"]
+        )
+        session.add(coordenada)
+        session.commit()
         global posicoes
         posicoes.append(posicao)
         return redirect("/")
