@@ -7,11 +7,11 @@
 [node name="Spatial" type="Spatial"]
 
 [node name="Mao" type="Spatial" parent="."]
-transform = Transform( 0.626601, 0, 0, 0, 0.80806, 0, 0, 0, 1, 0.0681, -0.0958576, -0.0933495 )
+transform = Transform( 0.626601, 0, 0, 0, 0.80806, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Mao"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 3 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Mao"]
@@ -19,7 +19,7 @@ mesh = SubResource( 3 )
 [node name="Timer" type="Timer" parent="Mao"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.0582663, -0.0832082, 0.994827, -0.00486511, 0.996532, 0.0830659, -0.998289, 0, -0.0584691, 13.201, 13.6517, 0.0478325 )
+transform = Transform( -4.37114e-08, -0.258819, 0.965926, 0, 0.965926, 0.258819, -1, 1.13133e-08, -4.2222e-08, 10.95, 4.477, 0 )
 fov = 68.5601
 
 [connection signal="timeout" from="Mao/Timer" to="Mao" method="_on_Timer_timeout"]
